@@ -1,25 +1,219 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.7.34009.444
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tugas pbo praktikum", "tugas pbo praktikum\tugas pbo praktikum.csproj", "{43B01F11-4757-4661-B8B1-153059765F42}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{43B01F11-4757-4661-B8B1-153059765F42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43B01F11-4757-4661-B8B1-153059765F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43B01F11-4757-4661-B8B1-153059765F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43B01F11-4757-4661-B8B1-153059765F42}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {6B3DA91F-49FF-4C88-8661-C47BC70707BF}
-	EndGlobalSection
-EndGlobal
+public class Vga
+{
+    public string merk;
+
+    public Vga (string merk)
+    {
+        this.merk = merk;
+    }
+}
+public class Nvidia : Vga
+{
+    public Nvidia (string merk) : base (merk)
+    {
+    }
+}
+public class Amd : Vga
+{
+    public Amd (string merk) : base(merk)
+    {
+    }
+}
+
+public class Processor 
+{
+    public string tipe;
+    public string merk;
+
+    public Processor (string merk, string tipe)
+    {
+        this.tipe = tipe;
+        this.merk = merk;
+    }
+}
+public class Intel : Processor
+{
+    public Intel (string tipe) : base("Intel", tipe)
+    {
+        this.tipe = tipe;
+    }
+}
+public class Corei3 : Intel
+{
+    public Corei3 (string tipe) : base(tipe)
+    {
+    }
+}
+public class Corei5 : Intel
+{
+    public Corei5 (string tipe):base(tipe)
+    {
+    }
+}
+public class Corei7 : Intel
+{
+    public Corei7 (string tipe):base(tipe)
+    {
+    }
+}
+public class AMD : Processor
+{
+    public AMD(string tipe): base("AMD", tipe)
+    {
+        this.tipe = tipe;
+    }
+}
+public class Athlon : AMD
+{
+    public Athlon (string tipe) : base(tipe)
+    {
+    }
+}
+public class Ryzen : AMD
+{
+    public Ryzen(string tipe): base(tipe)
+    {
+    }
+}
+
+public class Laptop
+{
+    public string merk;
+    public string tipe;
+    public Vga vga;
+    public Processor processor;
+    public Laptop(string merk, string tipe, Vga vga, Processor processor)
+    {
+        this.merk = merk;
+        this.tipe = tipe;
+        this.vga = vga;
+        this.processor = processor;
+    }
+    public void LaptopDinyalakan()
+    {
+        Console.WriteLine($"Laptop {this.merk} {this.tipe} menyala");
+    }
+    public void LaptopDimatikan()
+    {
+        Console.WriteLine($"Laptop {this.merk} {this.tipe} mati");
+    }      
+}
+public class ASUS : Laptop
+{
+    public ASUS (string tipe, Vga vga, Processor processor): base("ASUS", tipe, vga, processor)
+    {
+        this.tipe = tipe;
+        this.vga = vga;
+        this.processor = processor;
+    }     
+}
+public class ROG : ASUS
+{
+    public ROG (Vga vga, Processor processor) : base ("ROG", vga, processor)
+    {   
+    }
+}
+public class Vivobook : ASUS
+{
+    public Vivobook (Vga vga, Processor processor ) : base ("Vivobook",vga, processor)
+    { 
+    }
+    public void Ngoding()
+    {
+        Console.WriteLine("Ctak Ctak Ctak, error lagi !");
+    }
+}
+public class ACER : Laptop
+{
+    public ACER(string tipe, Vga vga, Processor processor) : base ("ACER",tipe, vga, processor)
+    {
+        this.tipe = tipe;
+        this.vga = vga;
+        this.processor = processor;
+    }
+}
+public class Swift : ACER
+{
+    public Swift(Vga vga, Processor processor): base("Swift", vga, processor)
+    {
+    }
+}
+public class Predator : ACER
+{
+    public Predator (Vga vga, Processor processor): base("Predator", vga, processor)
+    {
+    }
+    public void BermainGame()
+    {
+        Console.WriteLine($"Laptop {merk} {tipe} sedang memainkan game");
+    }
+}
+public class Lenovo : Laptop
+{
+    public Lenovo (string tipe, Vga vga, Processor processor) : base("Lenovo", tipe, vga, processor)
+    {
+        this.tipe = tipe;
+        this.vga = vga;
+        this.processor = processor;
+    }
+}
+public class Ideapad : Lenovo
+{
+    public Ideapad(Vga vga, Processor processor) : base ("Ideapad", vga, processor)
+    {
+    }
+}
+public class Legion : Lenovo
+{
+    public Legion(Vga vga, Processor processor) : base("Legion", vga, processor)
+    { 
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Vga
+        Nvidia Nvdia1 = new Nvidia("Nvidia");
+        Amd Amd1 = new Amd("AMD");
+
+        // Processor
+        Corei3 CoreI3 = new Corei3("Core i3");
+        Corei5 CoreI5 = new Corei5("Core i5");
+        Corei7 CoreI7 = new Corei7("Core i7");
+        Ryzen Ryzen1 = new Ryzen("RAYZEN");
+        Athlon Athlon1 = new Athlon("Athlon");
+
+        // Laptop1 bertipe data Laptop dan diisi dengan objek Vivobook
+        Laptop Laptop1 = new Vivobook(Nvdia1, CoreI5);
+
+        // Laptop2 bertipe data Laptop dan diisi dengan objek IdeaPad
+        Laptop Laptop2 = new Ideapad(Amd1, Ryzen1);
+
+        // Predator bertipe data Predator dan diisi dengan objek Predator
+        Predator predator = new Predator(Amd1, CoreI7);
+
+
+        // Jawaban :
+        // No.1
+        Laptop2.LaptopDinyalakan();
+        Laptop2.LaptopDimatikan();
+
+        // No.2
+        Laptop1.Ngoding();
+
+        // No.3
+        Console.WriteLine($"Merk Vga: {Laptop1.vga.merk}");
+        Console.WriteLine($"Merk Processor: {Laptop1.processor.merk}");
+        Console.WriteLine($"Tipe Processor: {Laptop1.processor.tipe}");
+
+        // No.4
+        predator.BermainGame();
+
+        // N0.5
+        ACER acer = new Predator(Amd1, CoreI7);
+        acer.BermainGame();
+    }
+}
